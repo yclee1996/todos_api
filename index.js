@@ -6,11 +6,15 @@ var todoRoutes = require('./routes/todos');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/views'));
+
+//so that it will reference to the views dir
 
 
 
 app.get("/", function(req, res){
-	res.send("hi this is express");
+	res.sendFile("index.html");
 });
 
 app.use('/api/todos', todoRoutes);
